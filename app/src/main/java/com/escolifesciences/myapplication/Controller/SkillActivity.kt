@@ -3,6 +3,7 @@ package com.escolifesciences.myapplication.Controller
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import android.widget.ToggleButton
@@ -17,6 +18,12 @@ import com.escolifesciences.myapplication.R
 class SkillActivity : AppCompatActivity() {
 
     lateinit var player : Player
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("player", player)
+        Log.d("LifeCycle", player.toString())
+    }
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -29,6 +36,16 @@ class SkillActivity : AppCompatActivity() {
             insets
         }
         player = intent.getParcelableExtra("player", Player::class.java)!!
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null) {
+            player = savedInstanceState.getParcelable("player", Player::class.java)!!
+            Log.d("LifeCycle", "test")
+        }
+
     }
 
     fun onBeginnerClick (view: View) {

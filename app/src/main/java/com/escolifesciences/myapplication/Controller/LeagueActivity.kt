@@ -1,11 +1,14 @@
 package com.escolifesciences.myapplication.Controller
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.escolifesciences.myapplication.Model.Player
@@ -14,6 +17,12 @@ import com.escolifesciences.myapplication.R
 class LeagueActivity : BaseActivity() {
 
     var player = Player("", "")
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("player", player)
+        Log.d("LifeCycle", player.toString())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +34,16 @@ class LeagueActivity : BaseActivity() {
             insets
         }
     }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null) {
+            player = savedInstanceState.getParcelable("player", Player::class.java)!!
+            Log.d("LifeCycle", "test")
+        }
+    }
+
     fun onMensClick (view: View) {
         val btnWomens = findViewById<ToggleButton>(R.id.btnWomens)
         val btnCoEd = findViewById<ToggleButton>(R.id.btnCoEd)
