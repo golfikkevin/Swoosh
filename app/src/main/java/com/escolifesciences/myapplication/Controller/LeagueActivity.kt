@@ -1,4 +1,4 @@
-package com.escolifesciences.myapplication
+package com.escolifesciences.myapplication.Controller
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.escolifesciences.myapplication.R
 
 class LeagueActivity : BaseActivity() {
 

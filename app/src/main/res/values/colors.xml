@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <style name="progressBarWhite" parent="@style/Theme.AppCompat">
+        <item name="colorAccent">@color/white</item>
+    </style>
 </resources>

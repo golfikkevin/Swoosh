@@ -1,4 +1,4 @@
-package com.escolifesciences.myapplication
+package com.escolifesciences.myapplication.Controller
 
 import android.os.Bundle
 import android.util.Log
