@@ -8,6 +8,9 @@ import androidx.core.view.WindowInsetsCompat
 
 class SkillActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        var league = ""
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_skill)
@@ -16,5 +19,8 @@ class SkillActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        league = intent.getStringExtra("selectedLeague").toString()
+        println(league)
     }
 }
