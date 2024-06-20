@@ -8,11 +8,12 @@ import android.widget.ToggleButton
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.escolifesciences.myapplication.Model.Player
 import com.escolifesciences.myapplication.R
 
 class LeagueActivity : BaseActivity() {
 
-    var selectedLeague = ""
+    var player = Player("", "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +30,7 @@ class LeagueActivity : BaseActivity() {
         val btnCoEd = findViewById<ToggleButton>(R.id.btnCoEd)
         btnWomens.isChecked = false
         btnCoEd.isChecked = false
-        selectedLeague = "Mens"
+        player.league = "Mens"
     }
 
     fun onWomensClick (view: View) {
@@ -37,7 +38,7 @@ class LeagueActivity : BaseActivity() {
         val btnCoEd = findViewById<ToggleButton>(R.id.btnCoEd)
         btnMens.isChecked = false
         btnCoEd.isChecked = false
-        selectedLeague = "Womens"
+        player.league = "Womens"
     }
 
     fun onCoEdClick (view: View) {
@@ -45,13 +46,13 @@ class LeagueActivity : BaseActivity() {
         val btnWomens = findViewById<ToggleButton>(R.id.btnWomens)
         btnMens.isChecked = false
         btnWomens.isChecked = false
-        selectedLeague = "Co-Ed"
+        player.league = "Co-Ed"
     }
 
     fun leagueNextClicked (view: View) {
-        if (selectedLeague != "" ) {
+        if (player.league != "" ) {
             val skillActivity = Intent(this, SkillActivity::class.java)
-            skillActivity.putExtra("selectedLeague", selectedLeague)
+            skillActivity.putExtra("player", player)
             startActivity(skillActivity)
         } else {
             Toast.makeText(this, "You haven't select the league", Toast.LENGTH_LONG).show()
